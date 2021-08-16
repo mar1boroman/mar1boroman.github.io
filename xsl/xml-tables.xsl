@@ -44,7 +44,7 @@
                 </div>
 
 
-                <div id="xml-table-container" class=" table-responsive container p-3 my-5 ">
+                <div id="xml-table-container" class=" table-responsive container my-5 ">
 
                     <table id="xml-table" class="table table-sm table-hover">
                         <thead class="table-dark">
