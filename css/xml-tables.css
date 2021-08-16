@@ -1,0 +1,36 @@
+#navigation-bar nav {
+  background-color: #cacfd6 !important;
+}
+
+table {
+  margin-top: 35px;
+}
+
+table thead th {
+  text-align: center;
+  background-color: #bf1363 !important;
+}
+
+#search-input:hover {
+  width: 500px;
+  transition: 0.4s;
+}
+
+#search-input {
+  width: 200px;
+  height: 40px;
+  transition: 0.4s;
+}
+
+#btn-export-csv
+{
+  background-color: #bf1363 !important;
+  transition: 0.4s;
+  border: none !important;
+}
+
+#btn-export-csv:hover
+{
+  background-color: #820D43 !important;
+  transition: 0.4s;
+}
