@@ -9,16 +9,16 @@ Firefox, unlike other browsers, allows the local XML document on your desktop to
 
 ### Step 1 : Add this stylesheet tag to your XML document
 
-    <?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/xml-table.xsl"?>
-    
+    <?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/xsl/xml-tables.xsl"?>
+
 OR
-    
+
     <?xml-stylesheet type="text/xsl" href="https://tinyurl.com/xml-tables"?>
 
-This tag is added after the XML version declaration 
+This tag is added after the XML version declaration
 
     <?xml version="1.0"?>
-  
+
 Here is an [example](https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/books.xml)
 
 ## Other browsers
@@ -32,22 +32,20 @@ Hence, we transform the XML first & then open the html table generated in any br
 
 This is a great free open source jar which allows you to perform basic XSLT transformations on your local machine through command line.
 
-[SourceForge](https://sourceforge.net/projects/saxon/files/) download link 
+[SourceForge](https://sourceforge.net/projects/saxon/files/) download link
 (Please refer the [Saxonica](https://www.saxonica.com/html/products/products.html) home page for latest release)
 
-On Linux systems, you can achieve this using``xsltproc``
+On Linux systems, you can achieve this using`xsltproc`
 
-**Copy saxon-he-*version*.jar file to a suitable location** 
+**Copy saxon-he-_version_.jar file to a suitable location**
 
 ### Step 2 : Transform your XML document into HTML
 
 Open the command prompt (Windows) or Terminal(Mac) and use the below command
 
-    java 
-    -jar <Saxon-Jar-Location>/saxon-he-10.5.jar 
-    -s:MyFile.XML -xsl:"https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/xml-table.xsl" 
+    java
+    -jar <Saxon-Jar-Location>/saxon-he-10.5.jar
+    -s:MyFile.XML -xsl:"https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/xsl/xml-tables.xsl"
     -o:MyOutput.html
-    
+
 Open the generated `MyOutput.html` file in any browser available to you.
-
-
