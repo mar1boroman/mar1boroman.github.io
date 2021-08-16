@@ -13,7 +13,7 @@ Firefox, unlike other browsers, allows the local XML document on your desktop to
 
 OR
 
-    <?xml-stylesheet type="text/xsl" href="https://tinyurl.com/xml-tables"?>
+    <?xml-stylesheet type="text/xsl" href="https://tinyurl.com/tablexml"?>
 
 This tag is added after the XML version declaration
 
