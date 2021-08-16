@@ -22,15 +22,17 @@ table thead th {
   transition: 0.4s;
 }
 
-#btn-export-csv
-{
+#btn-export-csv {
   background-color: #bf1363 !important;
   transition: 0.4s;
   border: none !important;
 }
 
-#btn-export-csv:hover
-{
-  background-color: #820D43 !important;
+#btn-export-csv:hover {
+  background-color: #820d43 !important;
   transition: 0.4s;
+}
+
+td {
+  word-wrap: break-word;
 }
