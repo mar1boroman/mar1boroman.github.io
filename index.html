@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <title>XML Tables</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
 
     <!-- Bootstrap core CSS -->
     <link
@@ -14,10 +16,19 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
   </head>
@@ -59,12 +70,7 @@
               </li>
 
               <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="README"
-                >
-                  Usage
-                </a>
+                <a class="nav-link" href="README"> Usage </a>
               </li>
             </ul>
           </div>
@@ -74,101 +80,83 @@
       <!-- Navigation bar End-->
 
       <!-- Navigation panes Start-->
-      
 
-        <!-- Main Landing Page Start-->
-        <div class="tab-pane fade show active" id="home" role="tabpanel">
-          <div class="mt-5">
-            <div
-              class="intro-main p-3 pb-md-4 mx-auto text-center"
-              style="max-width: 700px"
-            >
-              <h1 class="display-5 fw-normal">
-                Turn your XML file into a queryable data table - Instantly!
-              </h1>
-              <p class="fs-5 text-muted">
-                Quickly search through the data or save the XML file as CSV for
-                data processing.
-              </p>
+      <!-- Main Landing Page Start-->
+      <div class="tab-pane fade show active" id="home" role="tabpanel">
+        <div class="mt-5">
+          <div
+            class="intro-main p-3 pb-md-4 mx-auto text-center"
+            style="max-width: 700px"
+          >
+            <h1 class="display-5 fw-normal">
+              Turn your XML file into a queryable data table - Instantly!
+            </h1>
+            <p class="fs-5 text-muted">
+              Quickly search through the data or save the XML file as CSV for
+              data processing.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col d-flex align-items-stretch">
+              <div class="card mb-4 rounded-3 shadow-sm border-success">
+                <div
+                  class="card-header py-3 text-white bg-success border-success"
+                >
+                  <h4 class="my-0 fw-normal">Instant Search</h4>
+                </div>
+                <div class="card-body">
+                  Your transformed XML will feature a search box, which
+                  dynamically filters the XML table
+                </div>
+              </div>
+            </div>
+            <div class="col d-flex align-items-stretch">
+              <div class="card mb-4 rounded-3 shadow-sm border-info">
+                <div class="card-header py-3 text-white bg-info border-info">
+                  <h4 class="my-0 fw-normal">Export as CSV</h4>
+                </div>
+                <div class="card-body">
+                  Instantly export the datatable as double-quoted CSV file
+                </div>
+              </div>
+            </div>
+            <div class="col d-flex align-items-stretch">
+              <div class="card mb-4 rounded-3 shadow-sm border-warning">
+                <div
+                  class="card-header py-3 text-white bg-warning border-warning"
+                >
+                  <h4 class="my-0 fw-normal">Modelled XML</h4>
+                </div>
+                <div class="card-body">
+                  The table created will feature 2 additional columns Parent UID
+                  and Object UID which allows you to build recursive queries
+                  over the entire XML.
+                </div>
+              </div>
             </div>
           </div>
 
-          <div>
-            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-              <div class="col d-flex align-items-stretch">
-                <div class="card mb-4 rounded-3 shadow-sm border-success">
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      text-white
-                      bg-success
-                      border-success
-                    "
-                  >
-                    <h4 class="my-0 fw-normal">Instant Search</h4>
-                  </div>
-                  <div class="card-body">
-                    Your transformed XML will feature a search box, which
-                    dynamically filters the XML table
-                  </div>
-                </div>
-              </div>
-              <div class="col d-flex align-items-stretch">
-                <div class="card mb-4 rounded-3 shadow-sm border-info">
-                  <div class="card-header py-3 text-white bg-info border-info">
-                    <h4 class="my-0 fw-normal">Export as CSV</h4>
-                  </div>
-                  <div class="card-body">
-                    Instantly export the datatable as double-quoted CSV file
-                  </div>
-                </div>
-              </div>
-              <div class="col d-flex align-items-stretch">
-                <div class="card mb-4 rounded-3 shadow-sm border-warning">
-                  <div
-                    class="
-                      card-header
-                      py-3
-                      text-white
-                      bg-warning
-                      border-warning
-                    "
-                  >
-                    <h4 class="my-0 fw-normal">Modelled XML</h4>
-                  </div>
-                  <div class="card-body">
-                    The table created will feature 2 additional columns Parent
-                    UID and Object UID which allows you to build recursive
-                    queries over the entire XML.
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="mt-1">
+            <h2 class="display-6 text-center">
+              View your XML as a dataset ... and more!
+            </h2>
+          </div>
 
-            <div class="mt-1">
-              <h2 class="display-6 text-center">
-                View your XML as a dataset ... and more!
-              </h2>
-            </div>
-
-            <div>
-              <h4 class="display-6 text-center">
-                <i class="bi bi-arrow-bar-down"></i>
-              </h4>
-            </div>
-
-            <div
-              style="width: 100%; height: 1500px"
-              class="shadow p-3 mt-5 bg-body rounded"
-            >
-              <iframe
-                src="books.xml"
-                style="display: block; width: 100%; height: 100%; zoom: 50%"
-                class="fs-6"
+          <div class="my-3">
+            <h4 class="display-6 text-center">
+              <a
+                class="btn btn-success btn-lg"
+                href="books_original.xml"
+                target="_blank"
+                >Original File</a
               >
-              </iframe>
-            </div>
+              <a class="btn btn-success btn-lg" href="books.xml" target="_blank"
+                >Transformed File</a
+              >
+            </h4>
           </div>
         </div>
         <!-- Main Landing Page Ends-->
