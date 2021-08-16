@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="xml-tables.xsl"?>
+<?xml-stylesheet type="text/xsl" href="xsl/xml-tables.xsl"?>
 <catalog>
    <book id="bk101">
       <author>Gambardella, Matthew</author>
