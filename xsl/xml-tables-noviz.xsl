@@ -10,87 +10,63 @@
             <head>
                 <!-- Meta tags -->
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <!-- Include Bootstrap JS,Bootstrap CSS, JQuery libraries -->
+                <!-- Include Bootstrap JS,Bootstrap CSS, JQuery and Font Awesome libraries -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
 
                 <!-- Including custome JS & CSS code -->
                 <script type="text/javascript" src="js/xml-tables.js" crossorigin="anonymous"></script>
-                <script type="text/javascript" src="js/xml-tables-viz.js" crossorigin="anonymous"></script>
                 <link rel="stylesheet" href="css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
 
                 <!-- Setting up the navigation bar [Bootstrap template]-->
                 <div id="navigation-bar" class="fixed-top">
-                    <nav class="nav navbar navbar-light bg-info navbar-expand-lg">
+                    <nav class="nav navbar navbar-light bg-info">
                         <div class="container-fluid">
-                            <!-- Hamburger icon on resizing Start-->
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#hamburger" aria-controls="hamburger" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <!-- Hamburger icon on resizing End -->
-
-                            <div class="collapse navbar-collapse" id="hamburger">
-                                <a class="navbar-brand ms-3">XML Tables</a>
-
-                                <!-- Visualization Link Start-->
-
-                                <ul class="nav navbar-nav me-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-target="#viz" href="books_original.xml" target="_blank">Visualize</a>
-                                    </li>
-                                </ul>
-
-                                <!-- Visualization Link End-->
-
-                                <form class="d-flex ">
-                                    <div class="input-group">
-                                        <div class="input-group-text" id="search-input-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                            </svg>
-                                        </div>
-                                        <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
+                            <a class="navbar-brand ms-3">XML Tables</a>
+                            <form class="d-flex">
+                                <div class="input-group">
+                                    <div class="input-group-text" id="search-input-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
                                     </div>
-                                    <button id="btn-export-json" class="btn btn-success ms-auto me-2 text-nowrap">Export to JSON</button>
-                                    <button id="btn-export-csv" class="btn btn-success ms-auto me-2 text-nowrap">Export to CSV</button>
-                                </form>
-                            </div>
+                                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
+                                </div>
+                                <button id="btn-export-json" class="btn btn-success ms-auto me-2 text-nowrap">Export to JSON</button>
+                                <button id="btn-export-csv" class="btn btn-success ms-auto me-2 text-nowrap">Export to CSV</button>
+                            </form>
                         </div>
                     </nav>
                 </div>
 
-                <!-- Home Pane -->
 
-                <div class="tab-pane fade show active" id="home" role="tabpanel">
-                    <div id="xml-table-container" class=" table-responsive container my-5 ">
+                <div id="xml-table-container" class=" table-responsive container my-5 ">
 
-                        <table id="xml-table" class="table table-sm table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Parent UID</th>
-                                    <th>Object UID</th>
-                                    <th>Node Type</th>
-                                    <th>Node Name</th>
-                                    <th>Node Value</th>
-                                    <th>Node Path</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <table id="xml-table" class="table table-sm table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Parent UID</th>
+                                <th>Object UID</th>
+                                <th>Node Type</th>
+                                <th>Node Name</th>
+                                <th>Node Value</th>
+                                <th>Node Path</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                                <xsl:call-template name="generate-row"/>
+                            <xsl:call-template name="generate-row"/>
 
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
 
-                    </div>
                 </div>
 
-                <!-- Home Pane Ends -->
             </body>
         </html>
     </xsl:template>
