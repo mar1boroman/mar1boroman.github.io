@@ -37,6 +37,7 @@
                                     </div>
                                     <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
                                 </div>
+                                <button id="btn-export-json" class="btn btn-success ms-auto me-2 text-nowrap">Export to JSON</button>
                                 <button id="btn-export-csv" class="btn btn-success ms-auto me-2 text-nowrap">Export to CSV</button>
                             </form>
                         </div>

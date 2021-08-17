@@ -22,6 +22,17 @@ table thead th {
   transition: 0.4s;
 }
 
+#btn-export-json {
+  background-color: #3c1579 !important;
+  transition: 0.4s;
+  border: none !important;
+}
+
+#btn-export-json:hover {
+  background-color: #190933 !important;
+  transition: 0.4s;
+}
+
 #btn-export-csv {
   background-color: #bf1363 !important;
   transition: 0.4s;

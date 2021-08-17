@@ -7,6 +7,10 @@ $(document).ready(function () {
     exportHTMLTableToCSV();
   });
 
+  $("#btn-export-json").click(function () {
+    tableToJson("xml-table");
+  });
+
   iterateThroughClass(".node-type-badge");
 });
 
@@ -24,7 +28,7 @@ function exportHTMLTableToCSV(tableID = "xml-table", separator = ",") {
   var records = document.querySelectorAll("table#" + tableID + " tr");
   // Build CSV String
   var csv = [];
-  console.log(records);
+  // console.log(records);
   for (var i = 0; i < records.length; i++) {
     var record = [];
     var cols = records[i].querySelectorAll("td, th");
@@ -101,4 +105,53 @@ function setNodeTypeBadge(nodetype) {
     $(nodetype).addClass(" badge");
     $(nodetype).addClass(" bg-success");
   }
+}
+
+// Adding Export to JSON functionality
+// Copied from https://j.hn/html-table-to-json/
+
+function tableToJson(tableID) {
+  var table = $("table#" + tableID)[0];
+
+  var headers = [];
+  var data = [];
+  // first row needs to be headers
+  for (var i = 0; i < table.rows[0].cells.length; i++) {
+    headers[i] = table.rows[0].cells[i].innerText
+      .toLowerCase()
+      .replace(/ /gi, "");
+  }
+  // go through cells
+  for (var i = 1; i < table.rows.length; i++) {
+    var tableRow = table.rows[i];
+    var rowData = {};
+    for (var j = 0; j < tableRow.cells.length; j++) {
+      rowData[headers[j]] = tableRow.cells[j].innerText;
+    }
+    data.push(rowData);
+  }
+
+  var jsonBlob = JSON.stringify(data);
+
+  var filename =
+    document.baseURI
+      .split(/(\\|\/)/g)
+      .pop()
+      .split(/(\.)/g)[0] + ".json";
+
+  downloadJSONFile(jsonBlob, filename);
+}
+
+function downloadJSONFile(jsonBlob, filename) {
+  var downloadLink = document.createElement("a");
+  downloadLink.style.display = "none";
+  downloadLink.setAttribute("target", "_blank");
+  downloadLink.setAttribute(
+    "href",
+    "data:text/json;charset=utf-8," + encodeURIComponent(jsonBlob)
+  );
+  downloadLink.setAttribute("download", filename);
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
