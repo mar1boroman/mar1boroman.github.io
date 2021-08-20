@@ -1,5 +1,6 @@
 $(document).ready(function () {
   removeSVG();
+
   $("#vizpage").click(function () {
     renderSVG();
   });
