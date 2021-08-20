@@ -29,7 +29,7 @@ function renderSVG() {
   removeSVG();
   addSVG();
 
-  var height = $(window).height();
+  var height = window.innerHeight ? window.innerHeight : $(window).height();
   var width = $(window).width();
 
   // Select the svg node created
