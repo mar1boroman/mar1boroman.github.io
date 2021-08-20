@@ -77,9 +77,9 @@
                     <div class="tab-pane fade  d-flex justify-content-center" id="viz" role="tabpanel">
                         <!-- <canvas id="xml-graph" width="500" height="500"></canvas> -->
                         <div id="svgdiv" class="d-flex w-100 h-100 flex-row">
-                            <svg xmlns="http://www.w3.org/2000/svg" id="xml-graph" height="100%" width="100%">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" id="xml-graph" height="100%" width="100%">
 
-                            </svg>
+                            </svg> -->
                         </div>
                     </div>
                     <!-- Visualization Pane Ends -->
