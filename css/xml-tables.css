@@ -47,3 +47,10 @@ table thead th {
 td {
   word-wrap: break-word;
 }
+
+#xml-graph {
+  position: absolute;
+  background-color: #edf2f4;
+  margin-top: 100px;
+  padding: 20px;
+}

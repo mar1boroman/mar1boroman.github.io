@@ -8,18 +8,20 @@
     <xsl:template match="/">
         <html lang="en">
             <head>
+            <title>XML Table</title>
                 <!-- Meta tags -->
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
                 <!-- Include Bootstrap JS,Bootstrap CSS, JQuery libraries -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+                <script src="https://d3js.org/d3.v7.min.js"></script>
 
 
                 <!-- Including custome JS & CSS code -->
                 <script type="text/javascript" src="js/xml-tables.js" crossorigin="anonymous"></script>
-                <script type="text/javascript" src="js/xml-tables-viz.js" crossorigin="anonymous"></script>
+                <script type="text/javascript" src="js/xml-graph-tree.js" crossorigin="anonymous"></script>
                 <link rel="stylesheet" href="css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
@@ -27,6 +29,7 @@
                 <!-- Setting up the navigation bar [Bootstrap template]-->
                 <div id="navigation-bar" class="fixed-top">
                     <nav class="nav navbar navbar-light bg-info navbar-expand-lg">
+
                         <div class="container-fluid">
                             <!-- Hamburger icon on resizing Start-->
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#hamburger" aria-controls="hamburger" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,15 +38,18 @@
                             <!-- Hamburger icon on resizing End -->
 
                             <div class="collapse navbar-collapse" id="hamburger">
-                                <a class="navbar-brand ms-3">XML Tables</a>
 
                                 <!-- Visualization Link Start-->
 
                                 <ul class="nav navbar-nav me-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-target="#viz" href="books_original.xml" target="_blank">Visualize</a>
+                                    <li id="homepage" class="nav-item">
+                                        <a class="navbar-brand nav-link ms-3 active" data-bs-toggle="tab" data-bs-target="#home" role="tab" href="#">XML Tables</a>
+                                    </li>
+                                    <li id="vizpage" class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz" role="tab" href="#">Visualize</a>
                                     </li>
                                 </ul>
+
 
                                 <!-- Visualization Link End-->
 
@@ -64,33 +70,51 @@
                     </nav>
                 </div>
 
-                <!-- Home Pane -->
 
-                <div class="tab-pane fade show active" id="home" role="tabpanel">
-                    <div id="xml-table-container" class=" table-responsive container my-5 ">
+                <!-- Navigation Panes Definition Start -->
+                <div class="tab-content" id="xml-tabs">
+                    <!-- Visualization Pane Starts -->
+                    <div class="tab-pane fade  d-flex justify-content-center" id="viz" role="tabpanel">
+                        <!-- <canvas id="xml-graph" width="500" height="500"></canvas> -->
+                        <div id="svgdiv" class="d-flex w-100 h-100 flex-row">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="xml-graph" height="100%" width="100%">
 
-                        <table id="xml-table" class="table table-sm table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Parent UID</th>
-                                    <th>Object UID</th>
-                                    <th>Node Type</th>
-                                    <th>Node Name</th>
-                                    <th>Node Value</th>
-                                    <th>Node Path</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <xsl:call-template name="generate-row"/>
-
-                            </tbody>
-                        </table>
-
+                            </svg>
+                        </div>
                     </div>
-                </div>
+                    <!-- Visualization Pane Ends -->
 
-                <!-- Home Pane Ends -->
+
+
+                    <!-- Home Pane -->
+
+                    <div class="tab-pane fade show active" id="home" role="tabpanel">
+                        <div id="xml-table-container" class=" table-responsive container my-5 ">
+
+                            <table id="xml-table" class="table table-sm table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Parent UID</th>
+                                        <th>Object UID</th>
+                                        <th>Node Type</th>
+                                        <th>Node Name</th>
+                                        <th>Node Value</th>
+                                        <th>Node Path</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <xsl:call-template name="generate-row"/>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- Home Pane Ends -->
+                </div >
+                <!-- Navigation Panes Definition Ends -->
+
             </body>
         </html>
     </xsl:template>
