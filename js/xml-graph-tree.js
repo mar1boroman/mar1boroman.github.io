@@ -1,23 +1,32 @@
 $(document).ready(function () {
+  removeSVG();
   $("#vizpage").click(function () {
     renderSVG();
   });
 
   $("#homepage").click(function () {
-    d3.select("#svgdiv").select("svg").remove();
+    removeSVG();
   });
 });
 
-function renderSVG() {
-  // Cleaning up the old SVG element
-  d3.select("#svgdiv").select("svg").remove();
+function removeSVG() {
+  $("#svgdiv").remove();
+}
 
-  // Append a svg node to target div #svgdiv
+function addSVG() {
+  var svgdiv = $('<div id="svgdiv" class="d-flex w-100 h-100 flex-row"></div>');
+  $("#viz").append(svgdiv);
+
   d3.select("#svgdiv")
     .append("svg")
     .attr("width", "100%")
     .attr("height", "100%")
     .attr("id", "xml-graph");
+}
+
+function renderSVG() {
+  removeSVG();
+  addSVG();
 
   var height = $(window).height();
   var width = $(window).width();
