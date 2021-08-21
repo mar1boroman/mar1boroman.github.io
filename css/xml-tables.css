@@ -23,13 +23,13 @@ table thead th {
 }
 
 #btn-export-json {
-  background-color: #3c1579 !important;
+  background-color: #070715 !important;
   transition: 0.4s;
   border: none !important;
 }
 
 #btn-export-json:hover {
-  background-color: #190933 !important;
+  background-color: #3c1579 !important;
   transition: 0.4s;
 }
 
@@ -52,7 +52,20 @@ td {
 
 #xml-graph {
   position: absolute;
-  background-color: #edf2f4;
-  margin-top: 100px;
+  background-color: #070715;
   padding: 20px;
+}
+
+#infocard {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  font-size: 11px;
+  background-color: rgba(7, 7, 21, 0.2);
+  color: white;
+}
+
+#infocard .list-group-item {
+  background-color: rgba(7, 7, 21, 0.2);
+  color: white;
 }

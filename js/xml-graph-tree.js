@@ -2,7 +2,7 @@ $(document).ready(function () {
   removeSVG();
 
   $("#vizpage").click(function () {
-    renderSVG();
+    renderSVG(2);
   });
 
   $("#homepage").click(function () {
@@ -23,9 +23,12 @@ function addSVG() {
     .attr("width", "100%")
     .attr("height", "100%")
     .attr("id", "xml-graph");
+
+  var d3params = $.parseHTML('<div id="d3params"' + "</div>");
+  $("#svgdiv").append(d3params);
 }
 
-function renderSVG() {
+function renderSVG(r) {
   removeSVG();
   addSVG();
 
@@ -65,11 +68,11 @@ function renderSVG() {
   //           {. . . . . . . . . . . . . . . . . . .},
   //       ]
 
-  const radius = 5; // radius of the nodes
+  var radius = r; // radius of the nodes
 
   function colorscheme() {
     const scale = d3.scaleOrdinal(d3.schemeTableau10);
-    return (d) => scale(d.parentuid);
+    return (d) => scale(d.nodetype);
   }
 
   drag = (simulation) => {
@@ -131,15 +134,62 @@ function renderSVG() {
     .join("circle")
     .attr("r", radius)
     .attr("fill", colorscheme())
+    .on("mouseover", handleMouseOver)
+    .on("mouseout", handleMouseOut)
     .call(drag(simulation));
+
+  function handleClick(d, i) {
+    var title = JSON.parse(d.target.children[0].textContent);
+
+    console.log(title);
+    $("#d3params").html(
+      '<div id="infocard" class="card" style="width: 18rem;">' +
+        '<div class="card-header">Selection Details</div>' +
+        '<ul class="list-group list-group-flush">' +
+        '<li class="list-group-item"> ParentUID : ' +
+        title.parentuid +
+        "</li>" +
+        '<li class="list-group-item"> ParentUID : ' +
+        title.objectuid +
+        "</li>" +
+        '<li class="list-group-item"> ParentUID : ' +
+        title.nodetype +
+        "</li>" +
+        '<li class="list-group-item"> ParentUID : ' +
+        title.nodename +
+        "</li>" +
+        '<li class="list-group-item"> ParentUID : ' +
+        title.nodevalue +
+        "</li>" +
+        "</ul>" +
+        "</div>"
+    );
+  }
+
+  function handleMouseOver(d, i) {
+    d3.select(this).transition().duration(1).attr("r", 20);
+  }
+
+  function handleMouseOut(d, i) {
+    d3.select(this).transition().duration(1).attr("r", 2);
+  }
 
   //tooltip
   svg
     .selectAll("circle")
     .append("title")
     .text((d) => {
-      return d.nodename + "," + d.nodevalue;
+      return JSON.stringify({
+        parentuid: d.parentuid,
+        objectuid: d.objectuid,
+        nodetype: d.nodetype,
+        nodename: d.nodename,
+        nodevalue: d.nodevalue,
+        nodepath: d.nodepath,
+      });
     });
+
+  d3.selectAll("circle").on("click", handleClick);
 
   //Redraw logic
   simulation.on("tick", () => {

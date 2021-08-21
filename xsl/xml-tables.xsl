@@ -74,7 +74,7 @@
                 <!-- Navigation Panes Definition Start -->
                 <div class="tab-content" id="xml-tabs">
                     <!-- Visualization Pane Starts -->
-                    <div class="tab-pane fade  d-flex justify-content-center" id="viz" role="tabpanel">
+                    <div class="tab-pane fade  d-flex flex-row" id="viz" role="tabpanel">
                         
                     </div>
                     <!-- Visualization Pane Ends -->
