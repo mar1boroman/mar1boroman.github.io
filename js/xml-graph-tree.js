@@ -29,76 +29,34 @@ function addSVG() {
 }
 
 function renderSVG(r) {
+  // Clean up and re-load
+
   removeSVG();
   addSVG();
 
+  // Initialize variables
+  var data = createJSON("xml-table");
+  var radius = r; // radius of the nodes
   var height = window.innerHeight ? window.innerHeight : $(window).height();
   var width = $(window).width();
 
-  // Select the svg node created
   var svg = d3
     .select("#xml-graph")
     .attr("viewBox", [0, 0, width, height])
-    .style("cursor", "crosshair");
-
-  var data = createJSON("xml-table");
-
-  //   var data = {
-  //       nodes : [
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //       ],
-  //       links : [
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //       ]
-  //   }
+    .style("cursor", "crosshair")
+    .call(
+      d3
+        .zoom()
+        .extent([
+          [0, 0],
+          [width, height],
+        ])
+        .scaleExtent([1, 8])
+        .on("zoom", zoomed)
+    );
 
   const links = data.links.map((d) => Object.create(d));
   const nodes = data.nodes.map((d) => Object.create(d));
-
-  //   nodes = [
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //       ]
-  //   links = [
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //           {. . . . . . . . . . . . . . . . . . .},
-  //       ]
-
-  var radius = r; // radius of the nodes
-
-  function colorscheme() {
-    const scale = d3.scaleOrdinal(d3.schemeTableau10);
-    return (d) => scale(d.nodetype);
-  }
-
-  drag = (simulation) => {
-    function dragstarted(event) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
-      event.subject.fx = event.subject.x;
-      event.subject.fy = event.subject.y;
-    }
-
-    function dragged(event) {
-      event.subject.fx = event.x;
-      event.subject.fy = event.y;
-    }
-
-    function dragended(event) {
-      if (!event.active) simulation.alphaTarget(0);
-      event.subject.fx = null;
-      event.subject.fy = null;
-    }
-
-    return d3
-      .drag()
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended);
-  };
 
   const simulation = d3
     .forceSimulation(nodes)
@@ -121,14 +79,11 @@ function renderSVG(r) {
     .selectAll("line")
     .data(links)
     .join("line")
-    .attr("stroke-width", (d) => {
-      return Math.sqrt(d.value);
-    });
+    .attr("stroke-width", 1);
 
   const node = svg
     .append("g")
     .attr("stroke", "#fff")
-    .attr("stroke-width", 0.4)
     .selectAll("circle")
     .data(nodes)
     .join("circle")
@@ -138,10 +93,74 @@ function renderSVG(r) {
     .on("mouseout", handleMouseOut)
     .call(drag(simulation));
 
+  //Adding interactivity to all circle nodes
+  svg
+    .selectAll("circle")
+    .on("click", handleClick)
+    .attr("stroke-width", 0.4)
+    .append("title")
+    .text((d) => {
+      return JSON.stringify({
+        parentuid: d.parentuid,
+        objectuid: d.objectuid,
+        nodetype: d.nodetype,
+        nodename: d.nodename,
+        nodevalue: d.nodevalue,
+        nodepath: d.nodepath,
+      });
+    });
+
+  //Redraw logic
+  simulation.on("tick", () => {
+    link
+      .attr("x1", (d) => d.source.x)
+      .attr("y1", (d) => d.source.y)
+      .attr("x2", (d) => d.target.x)
+      .attr("y2", (d) => d.target.y);
+
+    node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+  });
+
+  //Internal Functions used by the above code
+
+  function drag(simulation) {
+    function dragstarted(event) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      event.subject.fx = event.subject.x;
+      event.subject.fy = event.subject.y;
+    }
+
+    function dragged(event) {
+      event.subject.fx = event.x;
+      event.subject.fy = event.y;
+    }
+
+    function dragended(event) {
+      if (!event.active) simulation.alphaTarget(0);
+      event.subject.fx = null;
+      event.subject.fy = null;
+    }
+
+    return d3
+      .drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+  }
+
+  function colorscheme() {
+    const scale = d3.scaleOrdinal(d3.schemeTableau10);
+    return (d) => scale(d.nodetype);
+  }
+
+  function zoomed({ transform }) {
+    node.attr("transform", transform);
+    link.attr("transform", transform);
+  }
+
   function handleClick(d, i) {
     var title = JSON.parse(d.target.children[0].textContent);
 
-    console.log(title);
     $("#d3params").html(
       '<div id="infocard" class="card" style="width: 18rem;">' +
         '<div class="card-header">Selection Details</div>' +
@@ -167,55 +186,37 @@ function renderSVG(r) {
   }
 
   function handleMouseOver(d, i) {
-    d3.select(this).transition().duration(1).attr("r", 20);
+    var nodeNeighbors = links
+      .filter((link) => {
+        return (
+          link.source.index === d.target.__data__.index ||
+          link.target.index === d.target.__data__.index
+        );
+      })
+      .map(function (link) {
+        return link.source.index === d.target.__data__.index
+          ? link.target.index
+          : link.source.index;
+      });
+
+    svg.selectAll("circle").style("opacity", 0.2);
+
+    svg
+      .selectAll("circle")
+      .filter(function (node) {
+        return nodeNeighbors.indexOf(node.index) > -1;
+      })
+      .style("opacity", 1)
+      .transition()
+      .duration(1)
+      .attr("r", 5);
+
+    d3.select(this).style("opacity", 1).transition().duration(1).attr("r", 5);
   }
 
   function handleMouseOut(d, i) {
-    d3.select(this).transition().duration(1).attr("r", 2);
-  }
-
-  //tooltip
-  svg
-    .selectAll("circle")
-    .append("title")
-    .text((d) => {
-      return JSON.stringify({
-        parentuid: d.parentuid,
-        objectuid: d.objectuid,
-        nodetype: d.nodetype,
-        nodename: d.nodename,
-        nodevalue: d.nodevalue,
-        nodepath: d.nodepath,
-      });
-    });
-
-  d3.selectAll("circle").on("click", handleClick);
-
-  //Redraw logic
-  simulation.on("tick", () => {
-    link
-      .attr("x1", (d) => d.source.x)
-      .attr("y1", (d) => d.source.y)
-      .attr("x2", (d) => d.target.x)
-      .attr("y2", (d) => d.target.y);
-
-    node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
-  });
-
-  //Zoom & Pan functionality
-  svg.call(
-    d3
-      .zoom()
-      .extent([
-        [0, 0],
-        [width, height],
-      ])
-      .scaleExtent([1, 8])
-      .on("zoom", zoomed)
-  );
-  function zoomed({ transform }) {
-    node.attr("transform", transform);
-    link.attr("transform", transform);
+    svg.selectAll("circle").style("opacity", 1);
+    d3.selectAll("circle").transition().duration(1).attr("r", 2);
   }
 }
 
