@@ -24,7 +24,7 @@
                 
                 <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
                 <!-- <script type="text/javascript" src="js/xml-graph-tree.js" crossorigin="anonymous"></script> -->
-                <link rel="stylesheet" href="css/xml-tables.css" crossorigin="anonymous"/>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
 
