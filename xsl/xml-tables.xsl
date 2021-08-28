@@ -20,7 +20,7 @@
 
 
                 <!-- Including custome JS & CSS code -->
-                <script type="text/javascript" src="https://raw.githubusercontent.com/mar1boroman/mar1boroman.github.io/main/js/xml-tables.js" crossorigin="anonymous"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/js/xml-tables.js" crossorigin="anonymous"></script>
                 
                 <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
                 <!-- <script type="text/javascript" src="js/xml-graph-tree.js" crossorigin="anonymous"></script> -->
