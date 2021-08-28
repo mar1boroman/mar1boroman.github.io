@@ -8,7 +8,7 @@
     <xsl:template match="/">
         <html lang="en">
             <head>
-            <title>XML Table</title>
+                <title>XML Table</title>
                 <!-- Meta tags -->
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -21,7 +21,8 @@
 
                 <!-- Including custome JS & CSS code -->
                 <script type="text/javascript" src="js/xml-tables.js" crossorigin="anonymous"></script>
-                <script type="text/javascript" src="js/xml-graph-tree.js" crossorigin="anonymous"></script>
+                <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
+                <!-- <script type="text/javascript" src="js/xml-graph-tree.js" crossorigin="anonymous"></script> -->
                 <link rel="stylesheet" href="css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
@@ -48,20 +49,18 @@
                                     <li id="vizpage" class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz" role="tab" href="#">Visualize</a>
                                     </li>
+                                    <li id="vizpage3d" class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz3d" role="tab" href="#">3D</a>
+                                    </li>
                                 </ul>
 
 
                                 <!-- Visualization Link End-->
 
                                 <form class="d-flex ">
-                                    <div class="input-group">
-                                        <div class="input-group-text" id="search-input-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                            </svg>
-                                        </div>
-                                        <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
-                                    </div>
+
+                                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
+
                                     <button id="btn-export-json" class="btn btn-success ms-auto me-2 text-nowrap">Export to JSON</button>
                                     <button id="btn-export-csv" class="btn btn-success ms-auto me-2 text-nowrap">Export to CSV</button>
                                 </form>
@@ -75,7 +74,10 @@
                 <div class="tab-content" id="xml-tabs">
                     <!-- Visualization Pane Starts -->
                     <div class="tab-pane fade  d-flex flex-row" id="viz" role="tabpanel">
-                        
+
+                    </div>
+                    <div class="tab-pane fade  d-flex flex-row" id="viz3d" role="tabpanel">
+
                     </div>
                     <!-- Visualization Pane Ends -->
 
@@ -121,7 +123,7 @@
 
         <!-- Load Column variables -->
         <xsl:variable name="parent-uid">
-            <xsl:value-of select ="generate-id(parent::node())"/>
+            <xsl:value-of select ="generate-id(parent::node()) "/>
         </xsl:variable>
         <xsl:variable name="object-uid">
             <xsl:value-of select ="generate-id()"/>
@@ -142,10 +144,25 @@
         <!-- Populate HTML table with a single row -->
 
         <tr>
+            <xsl:attribute name="parent-uid">
+                <xsl:value-of select = "$parent-uid"/>
+            </xsl:attribute>
+            <xsl:attribute name="object-uid">
+                <xsl:value-of select = "$object-uid"/>
+            </xsl:attribute>
+            <xsl:attribute name="node-name">
+                <xsl:value-of select = "$get-node-name"/>
+            </xsl:attribute>
+            <xsl:attribute name="node-type">
+                <xsl:value-of select = "$get-node-type"/>
+            </xsl:attribute>
+            <xsl:attribute name="node-value">
+                <xsl:value-of select = "$get-node-value"/>
+            </xsl:attribute>
+
+
             <td class="parent-uid">
-                <a href="#{$parent-uid}">
-                    <xsl:value-of select ="$parent-uid"/>
-                </a>
+                <xsl:value-of select ="$parent-uid"/>
             </td>
             <td class="object-uid">
                 <xsl:value-of select ="$object-uid"/>
@@ -175,16 +192,16 @@
     <xsl:template name="node-name">
         <xsl:choose>
             <xsl:when test="count(.|/)=1">
-                #root
+                Root element
             </xsl:when>
             <xsl:when test="self::*">
                 <xsl:value-of select ="name()"/>
             </xsl:when>
             <xsl:when test="self::text()">
-                #text
+                Text node
             </xsl:when>
             <xsl:when test="self::comment()">
-                #comment
+                Comment node
             </xsl:when>
             <xsl:when test="self::processing-instruction()">
                 <xsl:value-of select ="name()"/>
@@ -227,11 +244,11 @@
         <xsl:choose>
             <xsl:when test="count(.|/)=1">
                 <!-- Root Element -->
-                #root
+                Root Node
             </xsl:when>
             <xsl:when test="self::*">
                 <!-- Element Node -->
-                #element
+                Element Node
             </xsl:when>
             <xsl:when test="self::text()">
                 <!-- Text Node -->
