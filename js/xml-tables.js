@@ -10,6 +10,7 @@ $(document).ready(function () {
 
   $("#homepage").click(function () {
     removeSVG();
+    iterateThroughClass(".node-type-badge");
   });
 
   $("#search-input").on("keyup", function () {
@@ -23,8 +24,6 @@ $(document).ready(function () {
   $("#btn-export-json").click(function () {
     tableToJson("xml-table");
   });
-
-  iterateThroughClass(".node-type-badge");
 });
 
 function lineage(r) {
@@ -231,11 +230,10 @@ function graph3D() {
 
   const Graph = ForceGraph3D()(elem)
     .graphData(gData)
-    .nodeRelSize(3)
     .nodeAutoColorBy("nodetype")
-    .nodeLabel((node) => `${node.nodename}: ${node.nodevalue}`)
-    .nodeOpacity(1)
-    .nodeResolution(10)
+    .nodeLabel(
+      (node) => `( ${node.nodetype} ) ${node.nodename}: ${node.nodevalue}`
+    )
     .onNodeClick((node) => {
       // Aim at node from outside it
       const distance = 40;
@@ -251,16 +249,7 @@ function graph3D() {
         1000
       );
     })
-    .linkDirectionalParticleColor(() => "#ffff")
-    .linkDirectionalParticleWidth(0.5)
-    .linkDirectionalArrowLength(1)
-    .linkDirectionalArrowRelPos(1)
-    .linkHoverPrecision(5)
-    .linkCurvature("curvature")
-    .linkCurveRotation("rotation");
-
-  Graph.onLinkClick(Graph.emitParticle); // emit particles on link click
-  Graph.onEngineStop(() => Graph.zoomToFit(400));
+    .linkDirectionalParticles(4);
 }
 
 function createHierarchy() {
@@ -279,8 +268,6 @@ function createHierarchy() {
 
     linkRow["source"] = source;
     linkRow["target"] = target;
-    linkRow["curvature"] = Math.random();
-    linkRow["rotation"] = Math.random();
 
     hierarchy["links"].push(linkRow);
 
