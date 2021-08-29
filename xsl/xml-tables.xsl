@@ -12,8 +12,8 @@
                 <!-- Meta tags -->
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-                
-                <link rel="stylesheet" href="css/xml-tables.css" crossorigin="anonymous"/>
+
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
 
@@ -102,7 +102,7 @@
                 </div >
                 <!-- Navigation Panes Definition Ends -->
 
-<!-- Include Bootstrap JS,Bootstrap CSS, JQuery libraries -->
+                <!-- Include Bootstrap JS,Bootstrap CSS, JQuery libraries -->
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"/>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -111,7 +111,11 @@
 
                 <!-- Including custome JS & CSS code -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
-                <script type="text/javascript" src="js/xml-tables.js" crossorigin="anonymous"></script>
+                <!-- Including custome JS & CSS code -->
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/js/xml-tables.js" crossorigin="anonymous"></script>
+                <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
+
+
             </body>
         </html>
     </xsl:template>
