@@ -11,9 +11,7 @@
                 <title>XML Table</title>
                 <!-- Meta tags -->
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/css/xml-tables.css" crossorigin="anonymous"/>
+                <link rel="stylesheet" href="../css/xml-tables.css" crossorigin="anonymous"/>
             </head>
             <body>
 
@@ -36,11 +34,11 @@
                                     <li id="homepage" class="nav-item">
                                         <a class="navbar-brand nav-link ms-3 active" data-bs-toggle="tab" data-bs-target="#home" role="tab" href="#">XML Tables</a>
                                     </li>
-                                    <li id="vizpage" class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz" role="tab" href="#">Visualize</a>
+                                    <li id="vizpage2D" class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz2D" role="tab" href="#">Visualize</a>
                                     </li>
-                                    <li id="vizpage3d" class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz3d" role="tab" href="#">3D</a>
+                                    <li id="vizpage3D" class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#viz3D" role="tab" href="#">3D</a>
                                     </li>
                                 </ul>
 
@@ -63,10 +61,10 @@
                 <!-- Navigation Panes Definition Start -->
                 <div class="tab-content" id="xml-tabs">
                     <!-- Visualization Pane Starts -->
-                    <div class="tab-pane fade  d-flex flex-row" id="viz" role="tabpanel">
+                    <div class="tab-pane fade  d-flex flex-row" id="viz2D" role="tabpanel">
 
                     </div>
-                    <div class="tab-pane fade  d-flex flex-row" id="viz3d" role="tabpanel">
+                    <div class="tab-pane fade  d-flex flex-row" id="viz3D" role="tabpanel">
 
                     </div>
                     <!-- Visualization Pane Ends -->
@@ -112,7 +110,7 @@
                 <!-- Including custome JS & CSS code -->
                 <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
                 <!-- Including custome JS & CSS code -->
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mar1boroman/mar1boroman.github.io@main/js/xml-tables.js" crossorigin="anonymous"></script>
+                <script type="text/javascript" src="../js/xml-tables.js" crossorigin="anonymous"></script>
                 <script type="module" src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.70.5/dist/3d-force-graph.min.js"></script>
 
 

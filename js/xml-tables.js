@@ -1,45 +1,64 @@
 $(document).ready(function () {
-  removeSVG();
+  const selection = "#selectionDetails";
+  const homePageLink = "#homepage";
+  const viz2Dlink = "#vizpage2D";
+  const viz3Dlink = "#vizpage3D";
+  const topDiv = "#svgdiv";
+  const viz2D = "#viz2D";
+  const viz3D = "#viz3D";
+  const htmlTableID = "#xml-table";
 
-  $("#vizpage").click(function () {
-    lineage(5);
+  removeSVG(topDiv);
+
+  $(viz2Dlink).click(function () {
+    graph2D(topDiv, viz2D, createHierarchy(htmlTableID), selection);
   });
-  $("#vizpage3d").click(function () {
-    graph3D();
+  $(viz3Dlink).click(function () {
+    graph3D(topDiv, viz3D, createHierarchy(htmlTableID));
   });
 
-  $("#homepage").click(function () {
-    removeSVG();
-    iterateThroughClass(".node-type-badge");
+  $(homePageLink).click(function () {
+    removeSVG(topDiv);
   });
 
+  // Generic functions for search and export
   $("#search-input").on("keyup", function () {
-    enableSearch($(this), "xml-table");
+    enableSearch($(this), htmlTableID);
   });
 
   $("#btn-export-csv").click(function () {
-    exportHTMLTableToCSV();
+    exportHTMLTableToCSV(htmlTableID);
   });
 
   $("#btn-export-json").click(function () {
-    tableToJson("xml-table");
+    tableToJson(htmlTableID);
   });
+
+  // Formatting columns
+  iterateThroughClass(".node-type-badge");
 });
 
-function lineage(r) {
+function graph2D(topDiv, viz2D, jsonData, selectionDetails) {
   // Clean up and re-load
 
-  removeSVG();
-  addSVG("#viz");
+  removeSVG(topDiv);
+  addSVG(viz2D);
 
   // Initialize variables
-  var data = createHierarchy();
+  const data = jsonData;
+  const r = 5;
+  const links = data.links.map((d) => Object.create(d));
+  const nodes = data.nodes.map((d) => Object.create(d));
   var radius = r; // radius of the nodes
   var height = window.innerHeight ? window.innerHeight : $(window).height();
   var width = $(window).width();
 
-  var svg = d3
-    .select("#xml-graph")
+  const svg = d3
+    .select(topDiv)
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("id", "xml-graph")
     .attr("viewBox", [0, 0, width, height])
     .style("cursor", "crosshair")
     .call(
@@ -52,9 +71,6 @@ function lineage(r) {
         .scaleExtent([1, 8])
         .on("zoom", zoomed)
     );
-
-  const links = data.links.map((d) => Object.create(d));
-  const nodes = data.nodes.map((d) => Object.create(d));
 
   const simulation = d3
     .forceSimulation(nodes)
@@ -86,25 +102,13 @@ function lineage(r) {
     .data(nodes)
     .join("circle")
     .attr("r", radius)
-    .attr("fill", colorscheme())
+    .attr("fill", nodeColor())
     .on("mouseover", handleMouseOver)
     .on("mouseout", handleMouseOut)
     .call(drag(simulation));
 
   //Adding interactivity to all circle nodes
-  svg
-    .selectAll("circle")
-    .on("click", handleClick)
-    .attr("stroke-width", 0.4)
-    .append("title")
-    .text((d) => {
-      return JSON.stringify({
-        objectuid: d.id,
-        nodename: d.nodename,
-        nodevalue: d.nodevalue,
-        nodetype: d.nodetype,
-      });
-    });
+  svg.selectAll("circle").attr("stroke-width", 0.4);
 
   //Redraw logic
   simulation.on("tick", () => {
@@ -144,7 +148,7 @@ function lineage(r) {
       .on("end", dragended);
   }
 
-  function colorscheme() {
+  function nodeColor() {
     const scale = d3.scaleOrdinal(d3.schemeTableau10);
     return (d) => scale(d.nodetype);
   }
@@ -154,10 +158,57 @@ function lineage(r) {
     link.attr("transform", transform);
   }
 
-  function handleClick(d, i) {
-    var title = JSON.parse(d.target.children[0].textContent);
+  function handleMouseOver(d, i) {
+    // find the neighboring nodes
+    var nodeNeighbors = links
+      .filter((link) => {
+        return (
+          link.source.index === d.target.__data__.index ||
+          link.target.index === d.target.__data__.index
+        );
+      })
+      .map(function (link) {
+        return link.source.index === d.target.__data__.index
+          ? link.target.index
+          : link.source.index;
+      });
 
-    $("#d3params").html(
+    //Set all the links and circles to opacity 0.2
+    d3.selectAll("circle").style("opacity", 0.2);
+    d3.selectAll("link").style("opacity", 0.2);
+
+    //Highlight the neighboring nodes and increase radius
+    d3.selectAll("circle")
+      .filter(function (node) {
+        return nodeNeighbors.indexOf(node.index) > -1;
+      })
+      .style("opacity", 1)
+      .transition()
+      .duration(1)
+      .attr("r", r * 2);
+
+    // Highlight the current node and increase radius
+    d3.select(this)
+      .style("opacity", 1)
+      .transition()
+      .duration(1)
+      .attr("r", r * 2);
+
+    //Add title / tooltip for current node
+    d3.select(this)
+      .append("title")
+      .text((d) => {
+        return JSON.stringify({
+          objectuid: d.id,
+          nodename: d.nodename,
+          nodevalue: d.nodevalue,
+          nodetype: d.nodetype,
+        });
+      });
+
+    // Create and populate the bottom right selection details card
+    let title = JSON.parse($(d.target.firstChild).text());
+    $(selectionDetails).html(
       '<div id="infocard" class="card" style="width: 18rem;">' +
         '<div class="card-header">Selection Details</div>' +
         '<ul class="list-group list-group-flush">' +
@@ -178,58 +229,27 @@ function lineage(r) {
     );
   }
 
-  function handleMouseOver(d, i) {
-    var nodeNeighbors = links
-      .filter((link) => {
-        return (
-          link.source.index === d.target.__data__.index ||
-          link.target.index === d.target.__data__.index
-        );
-      })
-      .map(function (link) {
-        return link.source.index === d.target.__data__.index
-          ? link.target.index
-          : link.source.index;
-      });
-
-    d3.selectAll("circle").style("opacity", 0.2);
-    d3.selectAll("path").style("opacity", 0.2);
-
-    d3.selectAll("circle")
-      .filter(function (node) {
-        return nodeNeighbors.indexOf(node.index) > -1;
-      })
-      .style("opacity", 1)
-      .transition()
-      .duration(1)
-      .attr("r", r * 2);
-
-    d3.select(this)
-      .style("opacity", 1)
-      .transition()
-      .duration(1)
-      .attr("r", r * 2);
-  }
-
   function handleMouseOut(d, i) {
+    //Revert the opacities and radius for all nodes and links
     d3.selectAll("circle").style("opacity", 1);
     d3.selectAll("circle").transition().duration(1).attr("r", r);
     d3.selectAll("path").style("opacity", 1);
+
+    //Remove the title / tooltip DOM element
+    d3.select(this).select("title").remove();
   }
 }
 
-function graph3D() {
+function graph3D(topDiv, viz3D, jsonData) {
   // Clean up and re-load - faster load
 
-  removeSVG();
-  addSVG("#viz3d");
+  removeSVG(topDiv);
+  addSVG(viz3D);
 
-  const gData = createHierarchy();
+  const targetDiv = $(topDiv)[0];
 
-  const elem = document.getElementById("svgdiv");
-
-  const Graph = ForceGraph3D()(elem)
-    .graphData(gData)
+  const Graph = ForceGraph3D()(targetDiv)
+    .graphData(jsonData)
     .nodeAutoColorBy("nodetype")
     .nodeLabel(
       (node) => `( ${node.nodetype} ) ${node.nodename}: ${node.nodevalue}`
@@ -252,11 +272,15 @@ function graph3D() {
     .linkDirectionalParticles(4);
 }
 
-function createHierarchy() {
-  var allnodes = [];
+function createHierarchy(htmlTableID) {
+  // Note that because of the way this HTML table is created
+  // The target nodes will be (object-uid), which uniquely identify the row
+  // Hence it will suffice to consider the target nodes as the complete list of nodes
+  // The only missing node will be the root node, which is added seperately
+
   var hierarchy = { links: [], nodes: [] };
 
-  $("tbody tr").each((i, row) => {
+  $("table" + htmlTableID + " tbody tr").each((i, row) => {
     var linkRow = {};
     var nodeInfo = {};
 
@@ -288,36 +312,30 @@ function createHierarchy() {
   return hierarchy;
 }
 
-function removeSVG() {
-  $("#svgdiv").remove();
+function removeSVG(divID) {
+  d3.select(divID).remove();
 }
 
 function addSVG(divID) {
-  var svgdiv = $('<div id="svgdiv" class="d-flex w-100 h-100 flex-row"></div>');
-  $(divID).append(svgdiv);
+  d3.select(divID)
+    .append("div")
+    .attr("id", "svgdiv")
+    .attr("class", "d-flex w-100 h-100 flex-row");
 
-  d3.select("#svgdiv")
-    .append("svg")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("id", "xml-graph");
-
-  var d3params = $('<div id="d3params"' + "</div>");
-  $("#svgdiv").append(d3params);
+  d3.select(divID).append("div").attr("id", "selectionDetails");
 }
 
-function enableSearch(element, tableID = "xml-table") {
-  console.log("enableSearch!!");
+function enableSearch(element, htmlTableID) {
   var value = $(element).val().toLowerCase();
 
-  $("#" + tableID + " tbody tr").filter(function () {
+  $(htmlTableID + " tbody tr").filter(function () {
     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
   });
 }
 
-function exportHTMLTableToCSV(tableID = "xml-table", separator = ",") {
+function exportHTMLTableToCSV(htmlTableID, separator = ",") {
   //Select table records
-  var records = document.querySelectorAll("table#" + tableID + " tr");
+  var records = document.querySelectorAll("table" + htmlTableID + " tr");
   // Build CSV String
   var csv = [];
   // console.log(records);
@@ -362,8 +380,8 @@ function downloadCSVFile(csvBlob, filename) {
 // Adding Export to JSON functionality
 // Copied from https://j.hn/html-table-to-json/
 
-function tableToJson(tableID) {
-  var table = $("table#" + tableID)[0];
+function tableToJson(htmlTableID) {
+  var table = $("table" + htmlTableID)[0];
 
   var headers = [];
   var data = [];
@@ -409,21 +427,14 @@ function downloadJSONFile(jsonBlob, filename) {
 }
 
 function iterateThroughClass(queryClass) {
-  // Select All elements with input queryClass class
   var records = document.querySelectorAll(queryClass);
 
-  // console.log(records);
-
   for (var i = 0; i < records.length; i++) {
-    // Calling custom function for every node selected for input class
-    // Note that the input is a node (not text)
     setNodeTypeBadge(records[i]);
   }
 }
 
 function setNodeTypeBadge(nodetype) {
-  // console.log(nodetype);
-
   if (nodetype.innerText === "Root") {
     $(nodetype).addClass(" badge");
     $(nodetype).addClass(" bg-primary");
