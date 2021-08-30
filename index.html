@@ -36,11 +36,14 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </head>
 
-  <body>
+  <body style="background-color: #dee2e6">
     <div class="container py-3" style="max-width: 960px">
       <!-- Navigation bar Start-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
+      <nav
+        class="navbar navbar-expand-lg navbar-light fixed-top"
+        style="background-color: #457b9d"
+      >
+        <div class="container-fluid px-5">
           <!-- Hamburger icon on resizing Start-->
           <button
             class="navbar-toggler"
@@ -57,47 +60,24 @@
 
           <!-- Navigation Link Buttons Start-->
           <div class="collapse navbar-collapse" id="hamburger">
-            <a class="navbar-brand" href="#">XML Tables</a>
+            <a
+              class="navbar-brand"
+              href="https://github.com/mar1boroman/xml-tables"
+              style="color: white"
+              >XML Tables</a
+            >
 
-            <div class="mt-1 me-auto">
-              <!-- Place this tag where you want the button to render. -->
+            <!-- Place this tag where you want the button to render. -->
 
-              <iframe
-                src="https://ghbtns.com/github-btn.html?user=mar1boroman&type=follow&count=true&size=large"
-                frameborder="0"
-                scrolling="0"
-                width="230"
-                height="30"
-                title="GitHub"
-              ></iframe>
-
-              <iframe
-                src="https://ghbtns.com/github-btn.html?user=mar1boroman&repo=mar1boroman.github.io&type=star&count=true&size=large"
-                frameborder="0"
-                scrolling="0"
-                width="170"
-                height="30"
-                title="GitHub"
-              ></iframe>
-            </div>
-
-            <ul class="nav navbar-nav ms-auto">
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  data-bs-toggle="tab"
-                  data-bs-target="#home"
-                  role="tab"
-                  href="#"
-                >
-                  Home
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="README"> Usage </a>
-              </li>
-            </ul>
+            <iframe
+              class="ms-auto"
+              src="https://ghbtns.com/github-btn.html?user=mar1boroman&type=follow&count=true&size=large"
+              frameborder="0"
+              scrolling="0"
+              width="230"
+              height="30"
+              title="GitHub"
+            ></iframe>
           </div>
           <!-- Navigation Link Buttons End -->
         </div>
@@ -111,37 +91,66 @@
         <div class="mt-5">
           <div
             class="intro-main p-3 pb-md-4 mx-auto text-center"
-            style="max-width: 700px"
+            style="max-width: 900px"
           >
-            <h1 class="display-5 fw-normal">
-              Turn your XML file into a tabular dataset
+            <h1 class="display-4 fw-normal">
+              Convert your local XML file into a <br />
+              Single Page Application
             </h1>
-            <p class="fs-5 text-muted">
-              Quickly search through the data or save the XML file as CSV for
-              data processing.
-            </p>
+            <p class="fs-5 text-muted">Learn how in 1 minute</p>
+            <iframe
+              class="my-4"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/gXiEUeSBVHw"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
 
-        <div>
+        <div class="pb-4 mx-auto text-center">
+          <h2 class="display-6 text-center">Github Repo</h2>
+          <a
+            class="fs-5 text-muted"
+            href="https://github.com/mar1boroman/xml-tables"
+            target="_blank"
+          >
+            https://github.com/mar1boroman/xml-tables
+          </a>
+        </div>
+
+        <div class="container-fluid my-4">
           <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col d-flex align-items-stretch">
-              <div class="card mb-4 rounded-3 shadow-sm border-success">
+              <div
+                class="card mb-4 rounded-3 shadow-sm"
+                style="border-color: #457b9d"
+              >
                 <div
-                  class="card-header py-3 text-white bg-success border-success"
+                  class="card-header py-3 text-white"
+                  style="border-color: #457b9d; background-color: #457b9d"
                 >
                   <h4 class="my-0 fw-normal">Instant Search</h4>
                 </div>
                 <div class="card-body">
-                  Your transformed XML will feature a search box, which
-                  dynamically filters the XML table
+                  Quickly Search through your XML data, explore the XML
+                  structure based on unique identifiers created for each node
                 </div>
               </div>
             </div>
             <div class="col d-flex align-items-stretch">
-              <div class="card mb-4 rounded-3 shadow-sm border-info">
-                <div class="card-header py-3 text-white bg-info border-info">
-                  <h4 class="my-0 fw-normal">Export as CSV</h4>
+              <div
+                class="card mb-4 rounded-3 shadow-sm"
+                style="border-color: #7cc8cb"
+              >
+                <div
+                  class="card-header py-3 text-white"
+                  style="border-color: #7cc8cb; background-color: #7cc8cb"
+                >
+                  <h4 class="my-0 fw-normal">Instant Export</h4>
                 </div>
                 <div class="card-body">
                   Instantly export the datatable as double-quoted CSV file
@@ -149,42 +158,50 @@
               </div>
             </div>
             <div class="col d-flex align-items-stretch">
-              <div class="card mb-4 rounded-3 shadow-sm border-warning">
+              <div
+                class="card mb-4 rounded-3 shadow-sm"
+                style="border-color: #1d3557"
+              >
                 <div
-                  class="card-header py-3 text-white bg-warning border-warning"
+                  class="card-header py-3 text-white"
+                  style="border-color: #1d3557; background-color: #1d3557"
                 >
-                  <h4 class="my-0 fw-normal">Modelled XML</h4>
+                  <h4 class="my-0 fw-normal">Powerful Visualizations</h4>
                 </div>
                 <div class="card-body">
-                  The table created will feature 2 additional columns Parent UID
-                  and Object UID which allows you to build recursive queries
-                  over the entire XML.
+                  Explore dynamic relationships in data with 2D and 3D
+                  visualizations
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="mt-1">
+          <div class="mt-4">
             <h2 class="display-6 text-center">View a Live Demo</h2>
           </div>
 
-          <div class="my-3">
-            <h4 class="display-6 text-center">
-              <a
-                class="btn btn-success btn-lg"
-                href="books_original.xml"
-                target="_blank"
-                >Original File</a
-              >
-              <a class="btn btn-success btn-lg" href="books.xml" target="_blank"
-                >Transformed File</a
-              >
-            </h4>
+          <div class="container-fluid my-4 d-flex justify-content-center">
+            <a
+              class="btn btn-secondary btn-lg mx-3"
+              href="demo/books_original.xml"
+              target="_blank"
+              >Original File</a
+            >
+            <a
+              class="btn btn-info btn-lg mx-3"
+              href="demo/books.xml"
+              target="_blank"
+              >Transformed File</a
+            >
           </div>
         </div>
         <!-- Main Landing Page Ends-->
       </div>
-      <!-- Navigation panes Start-->
+      <!-- Navigation panes Ends-->
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center">
+      <p>Made with <span style="color: #e63946">&hearts;</span> in India</p>
     </div>
   </body>
 </html>
