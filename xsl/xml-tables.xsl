@@ -45,7 +45,7 @@
 
                                 <!-- Visualization Link End-->
 
-                                <form class="d-flex ">
+                                <form class="d-flex nav navbar-nav">
 
                                     <input id="search-input" class="form-control me-2" type="search" placeholder="Search"/>
 
