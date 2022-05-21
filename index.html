@@ -1,214 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>XML Tables</title>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-    <meta content="utf-8" http-equiv="encoding" />
+    <meta charset="utf-8" />
     <meta
-      name="google-site-verification"
-      content="6k_e6GrxM8Y7qymQuSLVDWXH3vg29vjLjXNWSFbUHUE"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <meta
-      description="description"
-      content="Convert your local XML file into a HTML table, instantly search tabular data and visualize using d3 force graphs"
-    />
-    <!-- Bootstrap core CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <!-- JavaScript Bundle with Popper -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Omkar Konnur Portfolio</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Github Buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Simple line icons-->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
   </head>
-
-  <body style="background-color: #dee2e6">
-    <div class="container py-3" style="max-width: 960px">
-      <!-- Navigation bar Start-->
-      <nav
-        class="navbar navbar-expand-lg navbar-light fixed-top"
-        style="background-color: #457b9d"
-      >
-        <div class="container-fluid px-5">
-          <!-- Hamburger icon on resizing Start-->
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#hamburger"
-            aria-controls="hamburger"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <!-- Hamburger icon on resizing End -->
-
-          <!-- Navigation Link Buttons Start-->
-          <div class="collapse navbar-collapse" id="hamburger">
-            <a
-              class="navbar-brand"
-              href="https://github.com/mar1boroman/xml-tables"
-              style="color: white"
-              >XML Tables</a
-            >
-
-            <!-- Place this tag where you want the button to render. -->
-
-            <iframe
-              class="ms-auto"
-              src="https://ghbtns.com/github-btn.html?user=mar1boroman&type=follow&count=true&size=large"
-              frameborder="0"
-              scrolling="0"
-              width="230"
-              height="30"
-              title="GitHub"
-            ></iframe>
-          </div>
-          <!-- Navigation Link Buttons End -->
-        </div>
-      </nav>
-      <!-- Navigation bar End-->
-
-      <!-- Navigation panes Start-->
-
-      <!-- Main Landing Page Start-->
-      <div class="tab-pane fade show active" id="home" role="tabpanel">
-        <div class="mt-5">
-          <div
-            class="intro-main p-3 pb-md-4 mx-auto text-center"
-            style="max-width: 900px"
-          >
-            <h1 class="display-4 fw-normal">
-              Convert your local XML file into a <br />
-              Single Page Application
-            </h1>
-            <p class="fs-5 text-muted">Learn how in 1 minute</p>
-            <iframe
-              class="my-4"
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/gXiEUeSBVHw"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
-
-        <div class="pb-4 mx-auto text-center">
-          <h2 class="display-6 text-center">Github Repo</h2>
-          <a
-            class="fs-5 text-muted"
-            href="https://github.com/mar1boroman/xml-tables"
-            target="_blank"
-          >
-            https://github.com/mar1boroman/xml-tables
-          </a>
-        </div>
-
-        <div class="container-fluid my-4">
-          <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col d-flex align-items-stretch">
-              <div
-                class="card mb-4 rounded-3 shadow-sm"
-                style="border-color: #457b9d"
-              >
-                <div
-                  class="card-header py-3 text-white"
-                  style="border-color: #457b9d; background-color: #457b9d"
-                >
-                  <h4 class="my-0 fw-normal">Instant Search</h4>
-                </div>
-                <div class="card-body">
-                  Quickly Search through your XML data, explore the XML
-                  structure based on unique identifiers created for each node
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-              <div
-                class="card mb-4 rounded-3 shadow-sm"
-                style="border-color: #7cc8cb"
-              >
-                <div
-                  class="card-header py-3 text-white"
-                  style="border-color: #7cc8cb; background-color: #7cc8cb"
-                >
-                  <h4 class="my-0 fw-normal">Instant Export</h4>
-                </div>
-                <div class="card-body">
-                  Instantly export the datatable as double-quoted CSV file
-                </div>
-              </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-              <div
-                class="card mb-4 rounded-3 shadow-sm"
-                style="border-color: #1d3557"
-              >
-                <div
-                  class="card-header py-3 text-white"
-                  style="border-color: #1d3557; background-color: #1d3557"
-                >
-                  <h4 class="my-0 fw-normal">Powerful Visualizations</h4>
-                </div>
-                <div class="card-body">
-                  Explore dynamic relationships in data with 2D and 3D
-                  visualizations
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-4">
-            <h2 class="display-6 text-center">View a Live Demo</h2>
-          </div>
-
-          <div class="container-fluid my-4 d-flex justify-content-center">
-            <a
-              class="btn btn-secondary btn-lg mx-3"
-              href="demo/books_original.xml"
-              target="_blank"
-              >Original File</a
-            >
-            <a
-              class="btn btn-info btn-lg mx-3"
-              href="demo/books.xml"
-              target="_blank"
-              >Transformed File</a
-            >
-          </div>
-        </div>
-        <!-- Main Landing Page Ends-->
+  <body id="page-top">
+    <!-- Navigation-->
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand"><a href="#page-top">About me</a></li>
+        <li class="sidebar-nav-item"><a href="#services">Roles</a></li>
+        <li class="sidebar-nav-item"><a href="#portfolio">Portfolio</a></li>
+        <li class="sidebar-nav-item"><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Header-->
+    <header class="masthead d-flex align-items-center">
+      <div class="container px-4 px-lg-5 text-end">
+        <h1 class="mb-1" style="color: white">Hi. I am Omkar</h1>
+        <p class="mb-5" style="color: white">
+          Data & Analytics | Cloud Solutioning | Web Dev hobbyist | Ex-Educator
+          | Blockchain enthusiast
+        </p>
+        <a class="btn btn-outline-dark btn-xl" href="#services"
+          >Find Out More</a
+        >
       </div>
-      <!-- Navigation panes Ends-->
-    </div>
+    </header>
+    <!-- Services-->
+    <section
+      class="content-section bg-primary text-white text-center"
+      id="services"
+    >
+      <div class="container px-4 px-lg-5">
+        <div class="content-section-heading">
+          <h3 class="text-secondary mb-0">Roles</h3>
+          <h2 class="mb-5">Professional Engagements</h2>
+        </div>
+        <div class="row gx-4 gx-lg-5">
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3"
+              ><i class="icon-screen-smartphone"></i
+            ></span>
+            <h4><strong>Architect</strong></h4>
+            <p class="text-faded mb-0">
+              Designing migration solutions from On-prem to Azure Cloud
+              platforms.Data application design with focus on robustness,
+              scalability and maintainability
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+            <span class="service-icon rounded-circle mx-auto mb-3"
+              ><i class="icon-pencil"></i
+            ></span>
+            <h4><strong>Data specialist</strong></h4>
+            <p class="text-faded mb-0">
+              Experienced with end to end data lifecycle, from acquisition to
+              ingestion to BI & analytics.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+            <span class="service-icon rounded-circle mx-auto mb-3"
+              ><i class="icon-like"></i
+            ></span>
+            <h4><strong>Programmer</strong></h4>
+            <p class="text-faded mb-0">
+              Recent handson experience with Python & SQL (Various flavours).
+              Pet projects in Javascript, HTML and XSL. Past experience in Java.
+              Currently learning solidity.
+            </p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <span class="service-icon rounded-circle mx-auto mb-3"
+              ><i class="icon-mustache"></i
+            ></span>
+            <h4><strong>Educator</strong></h4>
+            <p class="text-faded mb-0">
+              Trained 3500+ entry and mid level graduates in field of Business
+              Intelligence tools over a period of 2 years. Regularly deliver
+              sessions on different technologies in various roles.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Portfolio-->
+    <section class="content-section" id="portfolio">
+      <div class="container px-4 px-lg-5">
+        <div class="content-section-heading text-center">
+          <h3 class="text-secondary mb-0">Portfolio</h3>
+          <h2 class="mb-5">Recent Projects</h2>
+        </div>
+        <div class="row gx-0">
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#!">
+              <div class="caption">
+                <div class="caption-content">
+                  <div class="h2">Cloud Migration</div>
+                  <p class="mb-0">
+                    Designing a migration strategy from on-prem to cloud
+                    technologies. Click to learn about my experience and
+                    insights
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="assets/img/portfolio-1.jpg"
+                alt="..."
+              />
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a
+              class="portfolio-item"
+              href="https://mar1boroman.github.io/xml-tables-online/"
+              target="_blank"
+            >
+              <div class="caption">
+                <div class="caption-content">
+                  <div class="h2">Open Source</div>
+                  <p class="mb-0">
+                    What started as my pet project to address inventory analysis
+                    in my role as a Architect, is now a full-fledged open source
+                    project to address generic XML parsing. Usually work on this
+                    over weekends. If you are reading this, please consider
+                    contributing to my project and leaving a star on my github
+                    repository, it would mean the world to me.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="assets/img/portfolio-2.jpg"
+                alt="..."
+              />
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#!">
+              <div class="caption">
+                <div class="caption-content">
+                  <div class="h2">Cloud, Legacy and past experience</div>
+                  <p class="mb-0">
+                    Hands-on experience with Azure Cloud, pySpark on Databricks,
+                    MongoDB with both design & development. Past experience on
+                    IBM Datastage, Informatica, Oracle and Teradata. Worked
+                    extensively on Cognos ages ago. Dabbled with PowerBI.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="assets/img/portfolio-3.jpg"
+                alt="..."
+              />
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <a class="portfolio-item" href="#!">
+              <div class="caption">
+                <div class="caption-content">
+                  <div class="h2">Programming</div>
+                  <p class="mb-0">
+                    Currently working on python. Scaling up on solidity smart
+                    contracts. Previously built a Informatica CI-CD tool on
+                    Java. Masterful at SQL which is necessary in my projects.
+                    Designed my open source project with a combination of
+                    Javascript, HTML, JS and XSL.
+                  </p>
+                </div>
+              </div>
+              <img
+                class="img-fluid"
+                src="assets/img/portfolio-4.jpg"
+                alt="..."
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="container-fluid d-flex justify-content-center">
-      <p>Made with <span style="color: #e63946">&hearts;</span> in India</p>
-    </div>
+    <!-- Callout-->
+    <section class="callout" id="contact">
+      <div class="container px-4 px-lg-5">
+        <h2 class="me-auto mb-5" style="color: white">Contact</h2>
+
+        <div id="contact-div" class="container mx-0 px-0">
+          <ul class="list-inline mb-5">
+            <li class="list-inline-item text-center">
+              <a
+                class="social-link rounded-circle text-white mr-3"
+                href="https://www.linkedin.com/in/omkarkonnur/"
+                target="_blank"
+                ><i class="icon-social-linkedin"></i
+              ></a>
+            </li>
+            <li class="list-inline-item text-center">
+              <a
+                class="social-link rounded-circle text-white"
+                href="https://github.com/mar1boroman"
+                target="_blank"
+                ><i class="icon-social-github"></i
+              ></a>
+            </li>
+            <li class="list-inline-item text-center">
+              <a
+                href="mailto: omkarkonnur91@gmail.com"
+                class="social-link rounded-circle text-white mr-3"
+              >
+                <i class="fa fa-envelope"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top"
+      ><i class="fas fa-angle-up"></i
+    ></a>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
   </body>
 </html>
